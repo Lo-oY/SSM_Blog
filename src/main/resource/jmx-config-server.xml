@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+          http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <!--<context:mbean-export server="server"/>-->
+    <context:mbean-export server="server"/>
+    <context:component-scan base-package="com.hand.jmx">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.jmx.export.annotation.ManagedResource"/>
+    </context:component-scan>
+
+    <!--<bean id="server" class="org.springframework.jmx.support.MBeanServerFactoryBean" />-->
+    <bean id="server" class="javax.management.MBeanServerFactory" factory-method="createMBeanServer"/>
+
+    <!--<bean id="server" class="java.lang.management.ManagementFactory" factory-method="getPlatformMBeanServer"/>-->
+
+
+    <bean id="connectorServer" class="org.springframework.jmx.support.ConnectorServerFactoryBean" depends-on="registry">
+        <property name="objectName">
+            <value>connector:name=rmi</value>
+        </property>
+        <property name="serviceUrl">
+            <value>service:jmx:rmi://localhost/jndi/rmi://localhost:39600/jmxrmi</value>
+        </property>
+    </bean>
+    <bean id="registry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
+        <property name="port">
+            <value>39600</value>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ly.dao.PostMapper">
+    <resultMap id="BaseResultMap" type="com.ly.pojo.Post">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="post_time" property="postTime" jdbcType="TIMESTAMP"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="keywords" property="keywords" jdbcType="VARCHAR"/>
+        <association property="postType" column="type_id" select="com.ly.dao.PostTypeMapper.selectByPrimaryKey"/>
+        <association property="user" column="user_id" select="com.ly.dao.UserMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.ly.pojo.Post" extends="BaseResultMap">
+        <result column="cotent" property="cotent" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_id, post_time, title, keywords, type_id
+  </sql>
+    <sql id="Blob_Column_List">
+    cotent
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from post
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from post
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.ly.pojo.Post">
+    insert into post (id, user_id, post_time, 
+      title, keywords, type_id, 
+      cotent)
+    values (#{id,jdbcType=INTEGER}, #{user.id,jdbcType=INTEGER}, #{postTime,jdbcType=TIMESTAMP},
+      #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{postType.id,jdbcType=INTEGER},
+      #{cotent,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.ly.pojo.Post">
+        insert into post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="postTime != null">
+                post_time,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="keywords != null">
+                keywords,
+            </if>
+            <if test="typeId != null">
+                type_id,
+            </if>
+            <if test="cotent != null">
+                cotent,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{user.id,jdbcType=INTEGER},
+            </if>
+            <if test="postTime != null">
+                #{postTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="keywords != null">
+                #{keywords,jdbcType=VARCHAR},
+            </if>
+            <if test="typeId != null">
+                #{postType.id,jdbcType=INTEGER},
+            </if>
+            <if test="cotent != null">
+                #{cotent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ly.pojo.Post">
+        update post
+        <set>
+            <if test="userId != null">
+                user_id = #{user.id,jdbcType=INTEGER},
+            </if>
+            <if test="postTime != null">
+                post_time = #{postTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="keywords != null">
+                keywords = #{keywords,jdbcType=VARCHAR},
+            </if>
+            <if test="typeId != null">
+                type_id = #{postType.id,jdbcType=INTEGER},
+            </if>
+            <if test="cotent != null">
+                cotent = #{cotent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ly.pojo.Post">
+    update post
+    set user_id = #{user.id,jdbcType=INTEGER},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      type_id = #{postType.id,jdbcType=INTEGER},
+      cotent = #{cotent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.ly.pojo.Post">
+    update post
+    set user_id = #{user.id,jdbcType=INTEGER},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      type_id = #{postType.id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

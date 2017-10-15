@@ -1,0 +1,179 @@
+
+*{
+    padding: 0;
+    margin:0;
+}
+
+body{
+    font-size: 14px;
+    background-color: #fafafa;
+        /*background-image: url(../bg.jpg);*/
+/*    width: 80%;
+    margin: 0 auto;
+*/}
+.blog_container{
+    margin: 0 auto;
+    width: 80%;
+}
+
+.header{
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    background-size: contain;
+}
+.main-navigation {
+    text-align: center;
+    background: #fafafa;
+    /*border-top: 1px solid #ebebeb;*/
+    margin-bottom: 35px;
+    /*border-bottom: 2px solid #e1e1e1;*/
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+}
+
+ul, menu, dir {
+    display: block;     
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+.menu li {
+    list-style: none;
+    display: inline-block;
+    position: relative;
+}
+
+.menu li a {
+    color: #505050;
+    line-height: 4em;
+    display: block;
+    padding: 0 21px;
+}
+
+.blog_list{
+
+}
+
+.icon-bar {
+    background-color: #888;
+}
+
+ .navbar-toggle {
+    border-color: #ddd;
+}
+
+.navbar-default{
+    border: none;
+    background: none;
+    box-shadow: none;
+    border-style:dashed;
+    border-width: 1px;
+    background-color: #fafafa;
+}
+
+.header_eng1 ,.header_eng2{
+    color: #505050;
+    margin: 0 ;
+    line-height: 21px;
+    padding-top: 5px;
+    font:italic 1.3em Georgia, serif;
+
+}
+.header_eng1{
+
+}
+.navbar{
+    background: transparent;
+}
+
+.header_left{
+
+    text-align: right;
+    font-size: 18px;
+    /*padding-top: 10px;*/
+    margin-bottom: 10px;
+    color: #505050;
+
+    /*padding: 2px;*/
+
+}
+.left{
+    /*margin-right: 0px;*/
+    padding: 10px 20px 0 0;
+    
+    text-align: right;
+}
+
+.list_left li{
+    list-style: none;
+    display: block;
+    padding-top: 8px;
+}
+ul[class=list_left] {
+    margin: 5px;
+    padding-top: 5px;
+     -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+.left_container{
+        margin-bottom: 30px;
+}
+
+.list_left li a{
+    color: #505050;
+        border-bottom: dashed;
+        border-width: 1px;
+
+}
+/*近期文章
+近期评论
+文章归档
+分类目录
+功能*/
+
+/*
+标题
+内容
+日期 标签 分类 评论*/
+
+.blogs h3 {
+    font-size: 16px;
+    font-weight: bold;
+    transition: all .5s;
+    margin-bottom: 10px;
+}
+
+.blogs p{
+
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font:12px/1.5 'Microsoft Yahei', 'Simsun';
+
+}
+
+.glyphicon{
+    margin-left:8px;
+    padding: 1px;
+    text-align: right;
+}
+
+.author{
+    margin-top:15px;
+}
