@@ -7,13 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * Created by liangyong on 2017/10/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ContextHierarchy({@ContextConfiguration(name = "parent", locations = "classpath:spring-mybatis.xml"),@ContextConfiguration(name = "child",  locations = "classpath:spring-mvc.xml")})
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml","classpath:spring-mvc.xml"})
+@WebAppConfiguration
+@ContextHierarchy({@ContextConfiguration(name = "parent", locations = "classpath:spring-mybatis.xml"),@ContextConfiguration(name = "child",  locations = "classpath:spring-mvc.xml")})
+//@ContextConfiguration(locations = {"classpath:spring-mybatis.xml","classpath:spring-mvc.xml"})
 public class TesetPostTypeJdbc {
 
     @Autowired
@@ -53,5 +55,11 @@ public class TesetPostTypeJdbc {
         postType.setName("update posttype");
         int i = postTypeMapper.updateByPrimaryKey(postType);
         Assert.assertEquals(1,i);
+    }
+
+    @Test
+    public void testSelect(){
+        PostType postType = postTypeMapper.selectByPrimaryKey(6);
+        System.out.println(postType);
     }
 }

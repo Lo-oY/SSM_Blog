@@ -13,11 +13,11 @@
         <result column="cotent" property="cotent" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_id, post_time, title, keywords, type_id
-  </sql>
+        id, user_id, post_time, title, keywords, type_id
+    </sql>
     <sql id="Blob_Column_List">
-    cotent
-  </sql>
+        cotent
+    </sql>
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -26,18 +26,31 @@
         from post
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="listPost" resultMap="ResultMapWithBLOBs" parameterType="Map">
+        select * from post
+        <where>
+            <if test="title!=null  and title !=''">
+                and title like "%"#{title}"%"
+            </if>
+            <if test="typeId!=null and typeId !=''">
+                and type_id = #{typeId}
+            </if>
+        </where>
+        order by post_time
+        limit #{start},#{end}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from post
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from post
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.ly.pojo.Post">
-    insert into post (id, user_id, post_time, 
-      title, keywords, type_id, 
-      cotent)
-    values (#{id,jdbcType=INTEGER}, #{user.id,jdbcType=INTEGER}, #{postTime,jdbcType=TIMESTAMP},
-      #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{postType.id,jdbcType=INTEGER},
-      #{cotent,jdbcType=LONGVARCHAR})
-  </insert>
+        insert into post (id, user_id, post_time,
+        title, keywords, type_id,
+        cotent)
+        values (#{id,jdbcType=INTEGER}, #{user.id,jdbcType=INTEGER}, #{postTime,jdbcType=TIMESTAMP},
+        #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{postType.id,jdbcType=INTEGER},
+        #{cotent,jdbcType=LONGVARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.ly.pojo.Post">
         insert into post
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -112,22 +125,22 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ly.pojo.Post">
-    update post
-    set user_id = #{user.id,jdbcType=INTEGER},
-      post_time = #{postTime,jdbcType=TIMESTAMP},
-      title = #{title,jdbcType=VARCHAR},
-      keywords = #{keywords,jdbcType=VARCHAR},
-      type_id = #{postType.id,jdbcType=INTEGER},
-      cotent = #{cotent,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update post
+        set user_id = #{user.id,jdbcType=INTEGER},
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+        title = #{title,jdbcType=VARCHAR},
+        keywords = #{keywords,jdbcType=VARCHAR},
+        type_id = #{postType.id,jdbcType=INTEGER},
+        cotent = #{cotent,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.ly.pojo.Post">
-    update post
-    set user_id = #{user.id,jdbcType=INTEGER},
-      post_time = #{postTime,jdbcType=TIMESTAMP},
-      title = #{title,jdbcType=VARCHAR},
-      keywords = #{keywords,jdbcType=VARCHAR},
-      type_id = #{postType.id,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update post
+        set user_id = #{user.id,jdbcType=INTEGER},
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+        title = #{title,jdbcType=VARCHAR},
+        keywords = #{keywords,jdbcType=VARCHAR},
+        type_id = #{postType.id,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

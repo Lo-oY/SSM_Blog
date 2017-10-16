@@ -5,9 +5,14 @@ import com.ly.pojo.Post;
 import com.ly.pojo.PostType;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public interface PostMapper {
     int deleteByPrimaryKey(Integer id);
+
+    List<Post> listPost(Map<String, Object> map);
 
     int insert(Post record);
 

@@ -5,10 +5,9 @@
   Time: 22:09
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <html>
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="static/bootstrap3/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta name="viewport"

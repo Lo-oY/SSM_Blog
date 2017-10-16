@@ -72,4 +72,17 @@ public class User {
     public void setIp(String ip) {
         this.ip = ip == null ? null : ip.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", registerTime=" + registerTime +
+                ", lastLogin=" + lastLogin +
+                ", ip='" + ip + '\'' +
+                '}';
+    }
 }

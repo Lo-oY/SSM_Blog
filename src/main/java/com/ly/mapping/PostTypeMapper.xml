@@ -3,8 +3,8 @@
 <mapper namespace="com.ly.dao.PostTypeMapper" >
   <resultMap id="BaseResultMap" type="com.ly.pojo.PostType" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="type_name" jdbcType="VARCHAR" />
-    <result column="order" property="type_order" jdbcType="INTEGER" />
+    <result column="type_name" property="name" jdbcType="VARCHAR" />
+    <result column="type_order" property="order" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, type_name, type_order

@@ -72,4 +72,17 @@ public class Post {
     public void setCotent(String cotent) {
         this.cotent = cotent == null ? null : cotent.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", user=" + user +
+                ", postTime=" + postTime +
+                ", title='" + title + '\'' +
+                ", keywords='" + keywords + '\'' +
+                ", postType=" + postType +
+                ", cotent='" + cotent + '\'' +
+                '}';
+    }
 }
