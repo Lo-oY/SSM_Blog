@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ly.dao.ResourceMapper">
+    <resultMap id="BaseResultMap" type="com.ly.pojo.Resource">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="resource_name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="menuId" jdbcType="INTEGER" property="menuid"/>
+        <result column="orderId" jdbcType="INTEGER" property="orderid"/>
+        <association property="menuid" column="menuId" select="com.ly.dao.MenuMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, resource_name, description, menuId, orderId
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from resource
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from resource
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ly.pojo.Resource">
+        insert into resource (id, resource_name, description,
+        menuId, orderId)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+        #{menuid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ly.pojo.Resource">
+        insert into resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                resource_name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="menuid != null">
+                menuId,
+            </if>
+            <if test="orderid != null">
+                orderId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="menuid != null">
+                #{menuid,jdbcType=INTEGER},
+            </if>
+            <if test="orderid != null">
+                #{orderid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ly.pojo.Resource">
+        update resource
+        <set>
+            <if test="name != null">
+                resource_name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="menuid != null">
+                menuId = #{menuid,jdbcType=INTEGER},
+            </if>
+            <if test="orderid != null">
+                orderId = #{orderid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ly.pojo.Resource">
+        update resource
+        set resource_name = #{name,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        menuId = #{menuid,jdbcType=INTEGER},
+        orderId = #{orderid,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

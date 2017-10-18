@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/jquery-easyui-1.3.5/themes/icon.css" type="text/css"/>
+    <link rel="stylesheet" href="../../static/jquery-easyui-1.3.5/themes/default/easyui.css" type="text/css"/>
+    <script type="text/javascript" src="../../static/js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../../static/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../static/jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<div class="easyui-layout" style="width:400px;height:200px;">
+    <div region="west" split="true" title="Navigator" style="width:150px;">
+        <p style="padding:5px;margin:0;">Select language:</p>
+        <ul>
+            <li><a href="javascript:void(0)" onclick="showcontent('java')">Java</a></li>
+            <li><a href="javascript:void(0)" onclick="showcontent('cshape')">C#</a></li>
+            <li><a href="javascript:void(0)" onclick="showcontent('vb')">VB</a></li>
+            <li><a href="javascript:void(0)" onclick="showcontent('erlang')">Erlang</a></li>
+        </ul>
+    </div>
+    <div id="content" region="center" title="Language" style="padding:5px;">
+    </div>
+
+    <div class="easyui-tabs" style="width:400px;height:100px;">
+        <div title="First Tab" style="padding:10px;">
+            First Tab
+        </div>
+        <div title="Second Tab" closable="true" style="padding:10px;">
+            Second Tab
+        </div>
+        <div title="Third Tab" iconCls="icon-reload" closable="true" style="padding:10px;">
+            Third Tab
+        </div>
+    </div>
+</div>
+</body>
+</html>

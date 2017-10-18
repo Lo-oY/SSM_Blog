@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ly.dao.MenuMapper">
+    <resultMap id="BaseResultMap" type="com.ly.pojo.Menu">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="orderId" property="orderid" jdbcType="INTEGER"/>
+        <result column="descrption" property="descrption" jdbcType="VARCHAR"/>
+        <collection property="resources" ofType="com.ly.pojo.Resource">
+            <!-- id:唯一标识
+                 property：要将订单明细的唯一标识映射到com.mybatis.entity.OrderDetail的那个属性
+             -->
+            <id column="res_id" property="id"/>
+            <result column="resource_name" property="name"/>
+            <result column="description" property="description"/>
+            <result column="orderId" property="orderid"/>
+            <result column="menuId" property="menuid"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, title, orderId, descrption
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from menu
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getAllMenu" resultMap="BaseResultMap">
+        select t1.*,
+        t2.id res_id,
+        t2.resource_name,
+        t2.description,
+        t2.orderId,
+        t2.menuId
+        from menu t1,resource t2
+        where t1.id = t2.menuId
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from menu
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.ly.pojo.Menu">
+        insert into menu (id, title, orderId,
+        descrption)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER},
+        #{descrption,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ly.pojo.Menu">
+        insert into menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="orderid != null">
+                orderId,
+            </if>
+            <if test="descrption != null">
+                descrption,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="orderid != null">
+                #{orderid,jdbcType=INTEGER},
+            </if>
+            <if test="descrption != null">
+                #{descrption,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ly.pojo.Menu">
+        update menu
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="orderid != null">
+                orderId = #{orderid,jdbcType=INTEGER},
+            </if>
+            <if test="descrption != null">
+                descrption = #{descrption,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ly.pojo.Menu">
+        update menu
+        set title = #{title,jdbcType=VARCHAR},
+        orderId = #{orderid,jdbcType=INTEGER},
+        descrption = #{descrption,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
