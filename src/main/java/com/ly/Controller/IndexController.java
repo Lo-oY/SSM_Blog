@@ -1,4 +1,4 @@
-package com.ly.Controller;
+package com.ly.controller;
 
 import com.ly.dao.PostMapper;
 import com.ly.pojo.Post;
