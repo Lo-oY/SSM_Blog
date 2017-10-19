@@ -3,6 +3,8 @@ package com.ly.dao;
 import com.ly.pojo.Resource;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ResourceMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +18,6 @@ public interface ResourceMapper {
     int updateByPrimaryKeySelective(Resource record);
 
     int updateByPrimaryKey(Resource record);
+
+    List<Resource> selectAllResource();
 }

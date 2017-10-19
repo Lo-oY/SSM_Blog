@@ -20,43 +20,57 @@
     <mvc:resources mapping="static/css/*" location="WEB-INF/static/css/"/>
     <mvc:resources mapping="static/js/*" location="WEB-INF/static/js/"/>
     <mvc:resources mapping="static/img/*" location="WEB-INF/static/img/"/>
+    <mvc:resources mapping="static/jquery-easyui-1.3.5/**" location="WEB-INF/static/jquery-easyui-1.3.5/"/>
+    <mvc:resources mapping="static/jquery-easyui-1.5.3/**" location="WEB-INF/static/jquery-easyui-1.5.3/"/>
     <mvc:resources mapping="static/bootstrap3/**" location="WEB-INF/static/bootstrap3/"/>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
+    <property name="prefix" value="/WEB-INF/jsp/"/>
+    <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
 
-    <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 默认编码 -->
-        <property name="defaultEncoding" value="utf-8"/>
-        <!-- 文件大小最大值 -->
-        <property name="maxUploadSize" value="10485760000"/>
-        <!-- 内存中的最大值 -->
-        <property name="maxInMemorySize" value="40960"/>
-    </bean>
+    <!--<property name="defaultViews">-->
+        <!--<list>-->
+            <!--<ref bean="jsonView"/>-->
+        <!--</list>-->
+    <!--</property>-->
+<!--</bean>-->
 
-
-    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">-->
-
-    <!--</bean>-->
-
-    <!--<mvc:interceptors>-->
-        <!--&lt;!&ndash; 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 &ndash;&gt;-->
-
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/*"/>-->
-            <!--<mvc:exclude-mapping path="/doLogin"/>-->
-            <!--<mvc:exclude-mapping path="/login"/>-->
-            <!--&lt;!&ndash; 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 &ndash;&gt;-->
-            <!--<bean class="com.ly.util.LoginInterceptor"/>-->
-
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+<bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+</bean>
 
 
-</beans>
+        <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+<bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+<!-- 默认编码 -->
+<property name="defaultEncoding" value="utf-8"/>
+<!-- 文件大小最大值 -->
+<property name="maxUploadSize" value="10485760000"/>
+<!-- 内存中的最大值 -->
+<property name="maxInMemorySize" value="40960"/>
+</bean>
+
+
+        <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">-->
+
+        <!--</bean>-->
+
+<mvc:interceptors>
+<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+
+<mvc:interceptor>
+    <mvc:mapping path="admin/*"/>
+    <!--<mvc:exclude-mapping path="/doLogin"/>-->
+    <mvc:exclude-mapping path="/login"/>
+    <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+    <bean class="com.ly.util.LoginInterceptor"/>
+
+</mvc:interceptor>
+</mvc:interceptors>
+
+
+        </beans>

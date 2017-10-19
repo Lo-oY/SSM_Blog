@@ -13,7 +13,7 @@
             <id column="res_id" property="id"/>
             <result column="resource_name" property="name"/>
             <result column="description" property="description"/>
-            <result column="orderId" property="orderid"/>
+            <result column="order_id" property="orderid"/>
             <result column="menuId" property="menuid"/>
         </collection>
     </resultMap>
@@ -32,10 +32,11 @@
         t2.id res_id,
         t2.resource_name,
         t2.description,
-        t2.orderId,
+        t2.orderId order_id,
         t2.menuId
-        from menu t1,resource t2
-        where t1.id = t2.menuId
+        from menu t1 left join resource t2
+        on t1.id = t2.menuId
+        order by t1.orderid,t2.orderid
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from menu

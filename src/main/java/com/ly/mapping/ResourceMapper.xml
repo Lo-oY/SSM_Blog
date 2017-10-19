@@ -7,7 +7,6 @@
         <result column="description" jdbcType="VARCHAR" property="description"/>
         <result column="menuId" jdbcType="INTEGER" property="menuid"/>
         <result column="orderId" jdbcType="INTEGER" property="orderid"/>
-        <association property="menuid" column="menuId" select="com.ly.dao.MenuMapper.selectByPrimaryKey"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, resource_name, description, menuId, orderId
@@ -17,6 +16,12 @@
         <include refid="Base_Column_List"/>
         from resource
         where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectAllResource" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from resource
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from resource

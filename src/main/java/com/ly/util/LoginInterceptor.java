@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         else {
             System.out.println("false");
-            httpServletResponse.sendRedirect("login");
+            httpServletResponse.sendRedirect("/admin/login");
             return false;
         }
 

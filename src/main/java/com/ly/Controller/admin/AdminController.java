@@ -39,7 +39,7 @@ public class AdminController {
 
         User temp = adminService.login(user);
         if (temp != null) {
-            session.setAttribute("name", temp.getNickname());
+            session.setAttribute("user", temp.getNickname());
             return "redirect:/admin/index";
         }
 
@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index() {
+    public ModelAndView index() {
         List<Menu> menuList = menuService.listMenu();
         ModelAndView mav = new ModelAndView();
         mav.addObject("menuList", menuList);
