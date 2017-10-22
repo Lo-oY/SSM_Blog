@@ -5,7 +5,10 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="orderId" property="orderid" jdbcType="INTEGER"/>
-        <result column="descrption" property="descrption" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="MenuResourceResultMap" type="com.ly.pojo.Menu" extends="BaseResultMap">
         <collection property="resources" ofType="com.ly.pojo.Resource">
             <!-- id:唯一标识
                  property：要将订单明细的唯一标识映射到com.mybatis.entity.OrderDetail的那个属性
@@ -16,9 +19,10 @@
             <result column="order_id" property="orderid"/>
             <result column="menuId" property="menuid"/>
         </collection>
+
     </resultMap>
     <sql id="Base_Column_List">
-        id, title, orderId, descrption
+        id, title, orderId, description
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -27,7 +31,7 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="getAllMenu" resultMap="BaseResultMap">
+    <select id="getAllMenu" resultMap="MenuResourceResultMap">
         select t1.*,
         t2.id res_id,
         t2.resource_name,
@@ -44,9 +48,9 @@
     </delete>
     <insert id="insert" parameterType="com.ly.pojo.Menu">
         insert into menu (id, title, orderId,
-        descrption)
+        description)
         values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{orderid,jdbcType=INTEGER},
-        #{descrption,jdbcType=VARCHAR})
+        #{description,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.ly.pojo.Menu">
         insert into menu
@@ -60,8 +64,8 @@
             <if test="orderid != null">
                 orderId,
             </if>
-            <if test="descrption != null">
-                descrption,
+            <if test="description != null">
+                description,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -74,8 +78,8 @@
             <if test="orderid != null">
                 #{orderid,jdbcType=INTEGER},
             </if>
-            <if test="descrption != null">
-                #{descrption,jdbcType=VARCHAR},
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -88,8 +92,8 @@
             <if test="orderid != null">
                 orderId = #{orderid,jdbcType=INTEGER},
             </if>
-            <if test="descrption != null">
-                descrption = #{descrption,jdbcType=VARCHAR},
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -98,7 +102,7 @@
         update menu
         set title = #{title,jdbcType=VARCHAR},
         orderId = #{orderid,jdbcType=INTEGER},
-        descrption = #{descrption,jdbcType=VARCHAR}
+        description = #{description,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

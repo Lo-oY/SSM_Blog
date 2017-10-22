@@ -9,7 +9,7 @@ public class Menu {
 
     private Integer orderid;
 
-    private String descrption;
+    private String description;
 
     private List<Resource> resources;
 
@@ -37,12 +37,12 @@ public class Menu {
         this.orderid = orderid;
     }
 
-    public String getDescrption() {
-        return descrption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrption(String descrption) {
-        this.descrption = descrption == null ? null : descrption.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public List<Resource> getResources() {
@@ -59,7 +59,7 @@ public class Menu {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", orderid=" + orderid +
-                ", descrption='" + descrption + '\'' +
+                ", descrption='" + description + '\'' +
                 ", resources=" + resources +
                 '}';
     }

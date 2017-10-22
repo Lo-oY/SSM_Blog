@@ -17,7 +17,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextHierarchy({@ContextConfiguration(name = "parent", locations = "classpath:spring-mybatis.xml"),@ContextConfiguration(name = "child",  locations = "classpath:spring-mvc.xml")})
+@ContextHierarchy({@ContextConfiguration(name = "parent", locations = "classpath:spring-mybatis.xml"), @ContextConfiguration(name = "child", locations = "classpath:spring-mvc.xml")})
 //@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 //, "classpath:spring-mvc.xml"})
 //@WebAppConfiguration(value = "classpath:spring-mvc.xml")
@@ -29,17 +29,18 @@ public class TestMenuJdbc {
 
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
 
         Menu menu = new Menu();
         menu.setTitle("Title1");
-        menu.setDescrption("test Title");
+        menu.setDescription("test Title");
         menu.setOrderid(1);
         int i = menuMapper.insertSelective(menu);
-        Assert.assertEquals(1,i);
+        Assert.assertEquals(1, i);
     }
+
     @Test
-    public void testListAll(){
+    public void testListAll() {
 
         List<Menu> menuList = menuMapper.getAllMenu();
         System.out.println(menuList);

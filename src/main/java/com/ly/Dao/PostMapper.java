@@ -1,8 +1,6 @@
 package com.ly.dao;
 
-import com.ly.pojo.BlogType;
 import com.ly.pojo.Post;
-import com.ly.pojo.PostType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
