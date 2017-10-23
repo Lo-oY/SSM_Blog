@@ -32,10 +32,12 @@ public class MenuController {
         return "/admin/menu";
     }
 
-    @ResponseBody
+//    @ResponseBody
     @RequestMapping("/listMenu")
     public List<Menu> listMenu() {
-        return menuService.listMenu();
+        List<Menu> item = menuService.listMenu();
+        return item;
+//        return menuService.listMenu();
 
     }
 

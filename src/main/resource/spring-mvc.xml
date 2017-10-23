@@ -26,51 +26,60 @@
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix" value="/WEB-INF/jsp/"/>
-    <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="0"/>
     </bean>
 
-    <!--<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 
-    <!--<property name="defaultViews">-->
-        <!--<list>-->
-            <!--<ref bean="jsonView"/>-->
-        <!--</list>-->
+        <property name="defaultViews">
+            <list>
+                <ref bean="jsonView"/>
+            </list>
+        </property>
+
+    </bean>
+
+    <bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <!--<property name="o"-->
+
+    </bean>
+    <!--<bean name="view" class="org.springframework.web.servlet.view.InternalResourceView">-->
+    <!--<property name="url">-->
+    <!--<value>/*</value>-->
     <!--</property>-->
-<!--</bean>-->
-
-<bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-</bean>
+    <!--</bean>-->
 
 
-        <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
-<bean id="multipartResolver"
-      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-<!-- 默认编码 -->
-<property name="defaultEncoding" value="utf-8"/>
-<!-- 文件大小最大值 -->
-<property name="maxUploadSize" value="10485760000"/>
-<!-- 内存中的最大值 -->
-<property name="maxInMemorySize" value="40960"/>
-</bean>
+    <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 -->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 文件大小最大值 -->
+        <property name="maxUploadSize" value="10485760000"/>
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>
 
 
-        <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">-->
+    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">-->
 
-        <!--</bean>-->
+    <!--</bean>-->
 
-<mvc:interceptors>
-<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+    <mvc:interceptors>
+        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
 
-<mvc:interceptor>
-    <mvc:mapping path="admin/*"/>
-    <!--<mvc:exclude-mapping path="/doLogin"/>-->
-    <mvc:exclude-mapping path="/login"/>
-    <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
-    <bean class="com.ly.util.LoginInterceptor"/>
+        <mvc:interceptor>
+            <mvc:mapping path="admin/*"/>
+            <!--<mvc:exclude-mapping path="/doLogin"/>-->
+            <mvc:exclude-mapping path="/login"/>
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <bean class="com.ly.util.LoginInterceptor"/>
 
-</mvc:interceptor>
-</mvc:interceptors>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
-        </beans>
+</beans>

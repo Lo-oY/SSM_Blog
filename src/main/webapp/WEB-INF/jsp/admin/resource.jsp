@@ -15,6 +15,14 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/app.css">
     <script type="text/javascript" src="../../static/jquery-easyui-1.5.3/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../../static/js/app.js"></script>
+    <script type="text/javascript" src="../../static/js/clientPaging.js"></script>
+    <script>
+        $(function () {
+            console.log("test");
+            datagrid_clientPaging('#dg', '#pager-btns');
+        });
+    </script>
 </head>
 <body>
 <table id="dg" class="easyui-datagrid"
@@ -39,28 +47,10 @@
     </tr>
     </thead>
 </table>
-<script type="text/javascript">
-    $(function () {
-        var pager = $('#dg').datagrid().datagrid('getPager');	// get the pager of datagrid
-        pager.pagination({
-            buttons: [{
-                iconCls: 'icon-search',
-                handler: function () {
-                    alert('search');
-                }
-            }, {
-                iconCls: 'icon-add',
-                handler: function () {
-                    alert('add');
-                }
-            }, {
-                iconCls: 'icon-edit',
-                handler: function () {
-                    alert('edit');
-                }
-            }]
-        });
-    })
-</script>
+<div id="pager-btns">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true"></a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"></a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true"></a>
+</div>
 </body>
 </html>
