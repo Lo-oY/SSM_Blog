@@ -3,6 +3,8 @@ package com.ly.dao;
 import com.ly.pojo.PostType;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PostTypeMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,6 +18,8 @@ public interface PostTypeMapper {
     int updateByPrimaryKeySelective(PostType record);
 
     int updateByPrimaryKey(PostType record);
+
     Integer addBlogType(PostType blogType);
 
+    List<PostType> getAllPostType();
 }

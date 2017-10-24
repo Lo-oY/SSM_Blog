@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: liangyong
@@ -5,7 +6,7 @@
   Time: 23:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
     <title>Custom DataGrid Pager - jQuery EasyUI Demo</title>
@@ -15,30 +16,101 @@
     <script type="text/javascript" src="../../static/jquery-easyui-1.5.3/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/jquery-easyui-1.5.3/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../../static/js/clientPaging.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="../../static/ueditor1_4_3_3/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="../../static/ueditor1_4_3_3/ueditor.all.min.js">
+    </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8"
+            src="../../static/ueditor1_4_3_3/lang/zh-cn/zh-cn.js"></script>
+    <%--<script src="/admin/globalVariableServlet"/>--%>
     <title>编写博客</title>
 </head>
 <body>
-    <div  class="easyui-panel">
-        <table>
-            <tr>
-                <td>博客标题</td>
-                <input class="easyui-textbox" name="title" id="title"/>
-            </tr>
-            <tr>
-                <td>博客类别</td>
-                <input class="easyui-textbox" name="typeId" id="titleId"/>
-            </tr>
-            <tr>
-                <td>博客内容</td>
-                <input class="easyui-textbox" name="cotent" id="cotent"/>
-            </tr>
-            <tr>
-                <td>博客关键字</td>
-                <input class="easyui-textbox" name="keywords" id="keywords"/>
-            </tr>
+<div id="p" class="easyui-panel" title="编写博客" style="padding: 10px;">
 
+    <table cellspacing="20px">
+        <tr>
+            <td width="80px">博客标题：</td>
+            <td><input type="text" id="title" name="title" style="width:400px"/></td>
+        </tr>
+        <tr>
+            <td>所属类别：</td>
+            <td><select id="blogTypeId" class="easyui-combobox"
+                        name="blogType.id" style="width:154px" editable="false"
+                        panelHeight="auto">
+                <option value="">请选择博客类别...</option>
+                <c:forEach items="${postTypeList }" var="postType">
+                    <option value="${postType.id }">${postType.name }</option>
+                </c:forEach>
+            </select></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td valign="top">博客内容：</td>
+            <td>
+                <script id="editor" name="conent" type="text/plain"
+                        style="width:95%; height:300px;"></script>
+            </td>
+        </tr>
+        <tr>
+            <td>关键字：</td>
+            <td><input type="text" id="keywords" name="keywords"
+                       style="width:400px"/>&nbsp;&nbsp;&nbsp;多个关键字的话请用空格隔开
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="javascript:submitData()" class="easyui-linkbutton"
+                   data-options="iconCls:'icon-submit'">发布博客</a></td>
+        </tr>
+    </table>
+</div><!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('editor');
+</script>
+<script type="text/javascript">
+    function submitData() {
+        var title = $("#title").val();
+        var blogTypeId = $("#blogTypeId").combobox("getValue");
+        var content = UE.getEditor('editor').getContent();
+        var summary = UE.getEditor('editor').getContentTxt().substr(0, 155);
+        var keyWord = $("#keyWord").val();
+        var contentNoTag = UE.getEditor('editor').getContentTxt();
 
-        </table>
-    </div>
+        if (title == null || title == '') {
+            $.messager.alert("系统提示", "请输入标题！");
+        } else if (blogTypeId == null || blogTypeId == '') {
+            $.messager.alert("系统提示", "请选择博客类型！");
+        } else if (content == null || content == '') {
+            $.messager.alert("系统提示", "请编辑博客内容！");
+        } else {
+            $.post("${blog}/admin/blog/save.do",
+                    {
+                        'title': title,
+                        'blogType.id': blogTypeId,
+                        'content': content,
+                        'summary': summary,
+                        'keyWord': keyWord,
+                        'contentNoTag': contentNoTag
+                    }, function (result) {
+                        if (result.success) {
+                            $.messager.alert("系统提示", "博客发布成功！");
+                            clearValues();
+                        } else {
+                            $.messager.alert("系统提示", "博客发布失败！");
+                        }
+                    }, "json");
+        }
+    }
+    function clearValues() {
+        $("#title").val("");
+        $("#blogTypeId").combobox("setValue", "");
+        UE.getEditor("editor").setContent("");
+        $("#keyWord").val("");
+    }
+</script>
 </body>
 </html>
