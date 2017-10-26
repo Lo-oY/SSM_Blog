@@ -38,20 +38,30 @@
         </tr>
         <tr>
             <td>所属类别：</td>
-            <td><select id="blogTypeId" class="easyui-combobox"
-                        name="blogType.id" style="width:154px" editable="false"
-                        panelHeight="auto">
-                <option value="">请选择博客类别...</option>
-                <c:forEach items="${postTypeList }" var="postType">
-                    <option value="${postType.id }">${postType.name }</option>
-                </c:forEach>
-            </select></td>
-            <td></td>
+            <%--<td><select id="blogTypeId" class="easyui-combobox"--%>
+            <%--name="blogType.id" style="width:154px" editable="false"--%>
+            <%--panelHeight="auto">--%>
+            <%--<option value="">请选择博客类别...</       option>--%>
+            <%--<c:forEach items="${postTypeList }" var="postType">--%>
+            <%--<option value="${postType.id }">${postType.name }</option>--%>
+            <%--</c:forEach>--%>
+            <%--</select></td>--%>
+            <td>
+                <input class="easyui-combobox"
+                       name="blogType.id"
+                       data-options="
+					url:'/postType/listAll.json',
+					method:'get',
+					valueField:'id',
+					textField:'name',
+					panelHeight:'auto'
+			">
+            </td>
         </tr>
         <tr>
-            <td valign="top">博客内容：</td>
+            <td align="top">博客内容：</td>
             <td>
-                <script id="editor" name="conent" type="text/plain"
+                <script id="editor" name="content" type="text/plain"
                         style="width:95%; height:300px;"></script>
             </td>
         </tr>
@@ -76,9 +86,7 @@
         var title = $("#title").val();
         var blogTypeId = $("#blogTypeId").combobox("getValue");
         var content = UE.getEditor('editor').getContent();
-        var summary = UE.getEditor('editor').getContentTxt().substr(0, 155);
-        var keyWord = $("#keyWord").val();
-        var contentNoTag = UE.getEditor('editor').getContentTxt();
+        var keywords = $("#keywords").val();
 
         if (title == null || title == '') {
             $.messager.alert("系统提示", "请输入标题！");
@@ -92,9 +100,7 @@
                         'title': title,
                         'blogType.id': blogTypeId,
                         'content': content,
-                        'summary': summary,
-                        'keyWord': keyWord,
-                        'contentNoTag': contentNoTag
+                        'keywords': keywords,
                     }, function (result) {
                         if (result.success) {
                             $.messager.alert("系统提示", "博客发布成功！");

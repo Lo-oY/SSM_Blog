@@ -1,9 +1,9 @@
 function dataListLoadFilter(data) {
     console.log(data)
-    if ($.isArray(data.menuList)) {
+    if ($.isArray(data.item)) {
         data = {
-            total: data.menuList.length,
-            rows: data.menuList
+            total: data.item.length,
+            rows: data.item
         };
     } else {
         data = {

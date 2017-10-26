@@ -44,7 +44,7 @@ CREATE TABLE `post` (
   `user_id` int(11) NOT NULL,
   `post_time` datetime NOT NULL,
   `title` varchar(200) NOT NULL,
-  `cotent` text NOT NULL,
+  `content` text NOT NULL,
   `keywords` varchar(200) DEFAULT NULL,
   `type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)

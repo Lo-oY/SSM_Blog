@@ -42,7 +42,8 @@
 
     </bean>
 
-    <bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+    <!--<bean name="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">-->
+    <bean name="jsonView" class="com.ly.view.XMappingJackson2JsonView">
         <!--<property name="o"-->
 
     </bean>

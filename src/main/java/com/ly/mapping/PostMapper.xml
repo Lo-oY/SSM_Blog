@@ -10,13 +10,13 @@
         <association property="user" column="user_id" select="com.ly.dao.UserMapper.selectByPrimaryKey"/>
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="com.ly.pojo.Post" extends="BaseResultMap">
-        <result column="cotent" property="cotent" jdbcType="LONGVARCHAR"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, user_id, post_time, title, keywords, type_id
     </sql>
     <sql id="Blob_Column_List">
-        cotent
+        content
     </sql>
     <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
         select
@@ -46,10 +46,10 @@
     <insert id="insert" parameterType="com.ly.pojo.Post">
         insert into post (id, user_id, post_time,
         title, keywords, type_id,
-        cotent)
+        content)
         values (#{id,jdbcType=INTEGER}, #{user.id,jdbcType=INTEGER}, #{postTime,jdbcType=TIMESTAMP},
         #{title,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{postType.id,jdbcType=INTEGER},
-        #{cotent,jdbcType=LONGVARCHAR})
+        #{content,jdbcType=LONGVARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.ly.pojo.Post">
         insert into post
@@ -72,8 +72,8 @@
             <if test="typeId != null">
                 type_id,
             </if>
-            <if test="cotent != null">
-                cotent,
+            <if test="content != null">
+                content,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -95,8 +95,8 @@
             <if test="typeId != null">
                 #{postType.id,jdbcType=INTEGER},
             </if>
-            <if test="cotent != null">
-                #{cotent,jdbcType=LONGVARCHAR},
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
             </if>
         </trim>
     </insert>
@@ -118,8 +118,8 @@
             <if test="typeId != null">
                 type_id = #{postType.id,jdbcType=INTEGER},
             </if>
-            <if test="cotent != null">
-                cotent = #{cotent,jdbcType=LONGVARCHAR},
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -131,7 +131,7 @@
         title = #{title,jdbcType=VARCHAR},
         keywords = #{keywords,jdbcType=VARCHAR},
         type_id = #{postType.id,jdbcType=INTEGER},
-        cotent = #{cotent,jdbcType=LONGVARCHAR}
+        content = #{content,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.ly.pojo.Post">

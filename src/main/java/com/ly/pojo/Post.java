@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 import java.beans.PropertyDescriptor;
 import java.util.Date;
 
-public class Post implements InstantiationAwareBeanPostProcessor{
+public class Post implements InstantiationAwareBeanPostProcessor {
     private Integer id;
 
     private User user;
@@ -20,7 +20,7 @@ public class Post implements InstantiationAwareBeanPostProcessor{
 
     private PostType postType;
 
-    private String cotent;
+    private String content;
 
     public Integer getId() {
         return id;
@@ -70,12 +70,12 @@ public class Post implements InstantiationAwareBeanPostProcessor{
         this.postType = postType;
     }
 
-    public String getCotent() {
-        return cotent;
+    public String getContent() {
+        return content;
     }
 
-    public void setCotent(String cotent) {
-        this.cotent = cotent == null ? null : cotent.trim();
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Post implements InstantiationAwareBeanPostProcessor{
                 ", title='" + title + '\'' +
                 ", keywords='" + keywords + '\'' +
                 ", postType=" + postType +
-                ", cotent='" + cotent + '\'' +
+                ", cotent='" + content + '\'' +
                 '}';
     }
 
