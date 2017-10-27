@@ -1,6 +1,10 @@
 package com.ly.pojo;
 
-public class PostType {
+
+
+import java.io.Serializable;
+
+public class PostType implements Serializable {
     private Integer id;
 
     private String name;

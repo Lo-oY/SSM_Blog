@@ -1,0 +1,2 @@
+SHOW FULL COLUMNS FROM `Human` FROM `TestJson` LIKE '%'
+SHOW FULL TABLES FROM `TestJson` LIKE 'Human'

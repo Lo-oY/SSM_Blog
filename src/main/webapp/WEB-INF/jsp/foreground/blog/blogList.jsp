@@ -9,7 +9,7 @@
         <div class="blogs">
             <ul>
                 <h3>${post.title}</h3>
-                <p>${fn:substring(post.cotent,0,100 )}...</p>
+                <p>${fn:substring(post.content,0,100 )}...</p>
                 <div class="author">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     <span><fmt:formatDate value="${post.postTime }" type="date" pattern="yyyy-MM-dd HH:mm"/></span>

@@ -36,8 +36,8 @@ public class TestPostJdbc {
     @Test
     public void testInsert(){
         Post post = new Post();
-        post.setId(3);
-        post.setCotent("Hello World");
+//        post.setId(4);
+        post.setContent("Hello World");
         post.setKeywords("java spring");
         post.setPostTime(new Date(System.currentTimeMillis()));
         post.setTitle("First Post");

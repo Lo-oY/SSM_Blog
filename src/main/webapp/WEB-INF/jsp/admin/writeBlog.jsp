@@ -48,7 +48,9 @@
             <%--</select></td>--%>
             <td>
                 <input class="easyui-combobox"
-                       name="blogType.id"
+                       type="text"
+                       name="blogTypeId"
+                       id="blogTypeId"
                        data-options="
 					url:'/postType/listAll.json',
 					method:'get',
@@ -95,10 +97,10 @@
         } else if (content == null || content == '') {
             $.messager.alert("系统提示", "请编辑博客内容！");
         } else {
-            $.post("${blog}/admin/blog/save.do",
+            $.post("/post/save",
                     {
                         'title': title,
-                        'blogType.id': blogTypeId,
+                        'postType.id': blogTypeId,
                         'content': content,
                         'keywords': keywords,
                     }, function (result) {

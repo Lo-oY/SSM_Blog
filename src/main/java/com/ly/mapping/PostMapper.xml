@@ -7,7 +7,7 @@
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="keywords" property="keywords" jdbcType="VARCHAR"/>
         <association property="postType" column="type_id" select="com.ly.dao.PostTypeMapper.selectByPrimaryKey"/>
-        <association property="user" column="user_id" select="com.ly.dao.UserMapper.selectByPrimaryKey"/>
+        <association property="user" column="user_id" select="com.ly.dao.UserMapper.selectByPrimaryKey" />
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="com.ly.pojo.Post" extends="BaseResultMap">
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
@@ -57,7 +57,7 @@
             <if test="id != null">
                 id,
             </if>
-            <if test="userId != null">
+            <if test="user != null">
                 user_id,
             </if>
             <if test="postTime != null">
@@ -69,7 +69,7 @@
             <if test="keywords != null">
                 keywords,
             </if>
-            <if test="typeId != null">
+            <if test="postType != null">
                 type_id,
             </if>
             <if test="content != null">
@@ -80,7 +80,7 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
-            <if test="userId != null">
+            <if test="user != null">
                 #{user.id,jdbcType=INTEGER},
             </if>
             <if test="postTime != null">
@@ -92,7 +92,7 @@
             <if test="keywords != null">
                 #{keywords,jdbcType=VARCHAR},
             </if>
-            <if test="typeId != null">
+            <if test="postType != null">
                 #{postType.id,jdbcType=INTEGER},
             </if>
             <if test="content != null">
