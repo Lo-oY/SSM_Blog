@@ -13,7 +13,7 @@
     <!-- mybatis版本号 -->
     <mybatis.version>3.4.0</mybatis.version>
     <!-- log4j日志文件管理包版本 -->
-    <slf4j.version>1.7.7</slf4j.version>
+    <slf4j.version>1.6.6</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
   </properties>
 
@@ -146,11 +146,11 @@
     </dependency>
     <!-- 日志文件管理包 -->
     <!-- log start -->
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>log4j</groupId>-->
+      <!--<artifactId>log4j</artifactId>-->
+      <!--<version>${log4j.version}</version>-->
+    <!--</dependency>-->
 
 
     <!-- 格式化对象，方便输出日志 -->
@@ -169,9 +169,49 @@
 
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>${slf4j.version}</version>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.6.6</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.teambytes.logback/logback-flume-appender_2.11 -->
+    <dependency>
+      <groupId>com.teambytes.logback</groupId>
+      <artifactId>logback-flume-appender_2.11</artifactId>
+      <version>0.0.9</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>org.apache.flume</artifactId>
+          <groupId>flume-ng-sdk</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.flume</groupId>
+      <artifactId>flume-ng-sdk</artifactId>
+      <version>1.7.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>avro</artifactId>
+          <groupId>org.apache.avro</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>avro-ipc</artifactId>
+          <groupId>org.apache.avro</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>netty</artifactId>
+          <groupId>io.netty</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>slf4j-log4j12</artifactId>-->
+      <!--<version>${slf4j.version}</version>-->
+    <!--</dependency>-->
     <!-- log end -->
     <!-- 映入JSON -->
     <dependency>
@@ -242,6 +282,14 @@
       <artifactId>xstream</artifactId>
       <version>1.4.10</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+
 
 
   </dependencies>
