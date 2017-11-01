@@ -31,7 +31,11 @@ public class SpringUtils implements ApplicationContextAware {
 
 
     public static void register(Object object, String name) {
-        applicationContext.getAutowireCapableBeanFactory().autowireBeanProperties(object, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
+//        applicationContext.getAutowireCapableBeanFactory().autowireBeanProperties(object, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
+        System.out.println(applicationContext.getParentBeanFactory());
+        System.out.println(applicationContext.getAutowireCapableBeanFactory());
+        System.out.println(applicationContext.getAutowireCapableBeanFactory());
+
     }
 
 }

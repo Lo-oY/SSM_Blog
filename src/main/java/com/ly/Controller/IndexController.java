@@ -47,6 +47,7 @@ public class IndexController {
         System.out.println(postList);
         ModelAndView mav = new ModelAndView();
         mav.addObject("postList", postList);
+        mav.addObject("blogLeft", "blogList.jsp");
         mav.setViewName("index");
         return mav;
     }
