@@ -14,7 +14,7 @@
             </div>
             <div class=" collapse navbar-collapse" id="nav_bar">
                 <ul class="menu">
-                    <li><a href="#">博客首页</a></li>
+                    <li><a href="/index">博客首页</a></li>
                     <li><a href="#">关于博主</a></li>
                     <li><a href="#">我的相册</a></li>
                     <li><a href="#">资源小站</a></li>

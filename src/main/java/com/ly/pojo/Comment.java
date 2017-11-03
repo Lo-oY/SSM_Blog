@@ -38,7 +38,7 @@ public class Comment {
     }
 
     public void setUserIp(String userIp) {
-        this.userIp = userIp == null ? null : userIp.trim();
+        this.userIp = userIp;
     }
 
     public Date getCommentDate() {
@@ -71,5 +71,18 @@ public class Comment {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail == null ? null : userEmail.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", postId=" + postId +
+                ", userIp='" + userIp + '\'' +
+                ", commentDate=" + commentDate +
+                ", state=" + state +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                '}';
     }
 }

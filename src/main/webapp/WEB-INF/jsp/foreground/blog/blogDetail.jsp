@@ -5,6 +5,8 @@
   Time: 17:37
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.ly.pojo.Comment" %>
+<%@ page import="com.ly.pojo.Post" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -15,12 +17,29 @@
     SyntaxHighlighter.all();
 
     function loadimage() {
-        document.getElementById("randImage").src = "http://localhost:8080/image.jsp?" + Math.random();
+        document.getElementById("randImage").src = "http://localhost:8080/image?" + Math.random();
     }
 
     function submitData() {
         var imageCode = $("#imageCode").val();
         var comment = $("#content").val();
+        if (comment == null || content == "") {
+            alert("请输入评论内容");
+        } else if (imageCode == null || imageCode == "") {
+            alert("请填写验证码");
+        } else {
+            $.post(
+                    "${pageContext.request.contextPath}/post/saveComment",
+                    {"comment": comment, "imageCode": imageCode, "blogId": "${blog.id}"},
+                    function (result) {
+                        if (result.success) {
+                            alert("评论已提交成功，博主审核后添加");
+                            window.location.reload();
+                        } else {
+                            alert(result.errorInfo);
+                        }
+                    }, "json");
+        }
     }
 </script>
 
@@ -51,8 +70,7 @@
             ${post.content}
         </div>
         <div class="line"></div>
-        <div><p>上一篇：<a href='/blog/articles/56.html'>Java</a></p>
-            <p>下一篇：无</P></div>
+        <div>${pageCode}</div>
     </div>
 </div>
 
@@ -63,21 +81,34 @@
     <div>
         <div class="comment_data">
             <ul>
-                <div class="comment">
-										<span><font>
-                                            1楼&nbsp;&nbsp;&nbsp;&nbsp;127.0.0.1</font>
-											&nbsp;&nbsp;&nbsp;&nbsp;111&nbsp;&nbsp;&nbsp;&nbsp;
-											[2017-11-02 06:18] </span>
+                <%--<c:choose>--%>
+                <%--<c:when test="${post.comments.size() == 0}">--%>
+                <%--暂无评论--%>
+                <%--</c:when>--%>
+                <%--<c:otherwise>--%>
+                <%--${post.comments}--%>
+                <%--<c:forEach var="test" items="${post.comments} ">--%>
+                <%--<div class="comment">--%>
+                <%--<span>--%>
+                <%--<font>--%>
+                <%--&lt;%&ndash;${status.index+1}楼&nbsp;&nbsp;&nbsp;&nbsp;${comment.userIp}&ndash;%&gt;--%>
+                <%--${test}--%>
+                <%--</font>--%>
+                <%--&lt;%&ndash;<fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>&ndash;%&gt;--%>
+                <%--</span>--%>
+                <%--</div>--%>
+                <%--</c:forEach>--%>
+                <%--</c:otherwise>--%>
+                <%--</c:choose>--%>
+                <%
+                    for (Comment comment : post.getComments()) {
+                %>
+                <div>
+                    <%= comment.getPostId()%>
                 </div>
-
-                <div class="comment">
-											<span><font>
-                                                2楼&nbsp;&nbsp;&nbsp;&nbsp;127.0.0.1</font>
-												&nbsp;&nbsp;&nbsp;&nbsp;><script></script>&nbsp;&nbsp;&nbsp;&nbsp;
-												[2017-11-02 06:16] </span>
-                </div>
-
-
+                <%
+                    }
+                %>
             </ul>
         </div>
     </div>
@@ -94,7 +125,7 @@
         <div class="verCode">
             验证码:<input type="text" name="imageCode" id="imageCode"/>
             <img onclick="javascript:loadimage();" name="randImage" id="randImage" title="换一张试试"
-                 src="http://localhost:8080/image.jsp"/>
+                 src="/image"/>
         </div>
         <div class="publishButton">
             <button class="btn btn-primary" type="button" onclick="submitData()">发表评论</button>

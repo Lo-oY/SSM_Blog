@@ -7,7 +7,7 @@ import com.ly.pojo.Post;
  */
 public class PageUtils {
 
-    public String getPreAndNext(Post prePost, Post nextPost, String context) {
+    public static String getPreAndNext(Post prePost, Post nextPost, String context) {
         StringBuffer sb = new StringBuffer();
         if (prePost == null) {
             sb.append("<p>上一篇:无<p>");

@@ -12,6 +12,7 @@
                  javax.imageio.*"
          pageEncoding="utf-8" %>
 <%@ page import="org.apache.commons.lang.RandomStringUtils" %>
+<%@ page import="java.io.OutputStream" %>
 <%!
     Color getRandColor(int fc, int bc) {
         Random random = new Random();
@@ -54,7 +55,9 @@
     }
     session.setAttribute("sRand", sRand);
     graphics.dispose();
-    ImageIO.write(image, "JPEG", response.getOutputStream());
-
-
+    OutputStream output = response.getOutputStream();
+    ImageIO.write(image, "JPEG",response.getOutputStream());
+    output.flush();
+    out.clear();
+    out = pageContext.pushBody();
 %>
