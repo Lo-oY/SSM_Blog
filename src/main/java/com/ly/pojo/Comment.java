@@ -5,6 +5,8 @@ import java.util.Date;
 public class Comment {
     private Integer id;
 
+    private String commentContent;
+
     private Integer postId;
 
     private String userIp;
@@ -71,6 +73,14 @@ public class Comment {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail == null ? null : userEmail.trim();
+    }
+
+    public String getCommentContent() {
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 
     @Override

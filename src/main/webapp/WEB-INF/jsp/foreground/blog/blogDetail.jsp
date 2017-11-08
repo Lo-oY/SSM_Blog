@@ -5,16 +5,17 @@
   Time: 17:37
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ page import="com.ly.pojo.Comment" %>
 <%@ page import="com.ly.pojo.Post" %>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link rel="stylesheet" href="../../../static/css/blogDetail.css">
 <script type="text/javascript">
-    SyntaxHighlighter.all();
+//    SyntaxHighlighter.all();
 
     function loadimage() {
         document.getElementById("randImage").src = "http://localhost:8080/image?" + Math.random();
@@ -22,17 +23,16 @@
 
     function submitData() {
         var imageCode = $("#imageCode").val();
-        var comment = $("#content").val();
-        if (comment == null || content == "") {
+        var content = $("#content").val();
+        if (content == null || content == "") {
             alert("请输入评论内容");
         } else if (imageCode == null || imageCode == "") {
             alert("请填写验证码");
         } else {
-            $.post(
-                    "${pageContext.request.contextPath}/post/saveComment",
-                    {"comment": comment, "imageCode": imageCode, "blogId": "${blog.id}"},
+            $.post("${pageContext.request.contextPath}/post/saveComment",
+                    {"content": content, "imageCode": imageCode, "postId": "${post.id}"},
                     function (result) {
-                        if (result.success) {
+                        if (result.code == 0) {
                             alert("评论已提交成功，博主审核后添加");
                             window.location.reload();
                         } else {
@@ -81,34 +81,26 @@
     <div>
         <div class="comment_data">
             <ul>
-                <%--<c:choose>--%>
-                <%--<c:when test="${post.comments.size() == 0}">--%>
-                <%--暂无评论--%>
-                <%--</c:when>--%>
-                <%--<c:otherwise>--%>
-                <%--${post.comments}--%>
-                <%--<c:forEach var="test" items="${post.comments} ">--%>
-                <%--<div class="comment">--%>
-                <%--<span>--%>
-                <%--<font>--%>
-                <%--&lt;%&ndash;${status.index+1}楼&nbsp;&nbsp;&nbsp;&nbsp;${comment.userIp}&ndash;%&gt;--%>
-                <%--${test}--%>
-                <%--</font>--%>
-                <%--&lt;%&ndash;<fmt:formatDate value="${comment.commentDate}" pattern="yyyy-MM-dd HH:mm"/>&ndash;%&gt;--%>
-                <%--</span>--%>
-                <%--</div>--%>
-                <%--</c:forEach>--%>
-                <%--</c:otherwise>--%>
-                <%--</c:choose>--%>
-                <%
-                    for (Comment comment : post.getComments()) {
-                %>
-                <div>
-                    <%= comment.getPostId()%>
-                </div>
-                <%
-                    }
-                %>
+                <c:choose>
+                    <c:when test="${post.comments.size() == 0}">
+                        暂无评论
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="comment" items="${post.comments}" varStatus="status">
+                            <%--${post.comments.size()}--%>
+                            <div class="comment">
+                               	<span><font>
+                                        ${status.index+1}楼&nbsp;&nbsp;&nbsp;&nbsp;${comment.userIp }</font>
+										&nbsp;&nbsp;&nbsp;&nbsp;${comment.commentContent }&nbsp;&nbsp;&nbsp;&nbsp;
+										[<fmt:formatDate value="${comment.commentDate }" type="date"
+                                                         pattern="yyyy-MM-dd HH:mm" />] </span>
+                            </div>
+
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+
+
             </ul>
         </div>
     </div>

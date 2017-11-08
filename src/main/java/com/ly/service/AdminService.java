@@ -3,6 +3,7 @@ package com.ly.service;
 import com.ly.dao.UserMapper;
 import com.ly.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +11,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AdminService {
+
+    public static String NAME="AdminService";
+
+    @Value("${jdbc_url}")
+    private String str;
 
 
     @Autowired

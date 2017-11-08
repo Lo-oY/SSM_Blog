@@ -40,7 +40,6 @@ public class IndexController {
         System.out.println("warn enable" + log.isWarnEnabled());
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("typeId", 6);
         map.put("start", 0);
         map.put("end", 10);
         List<Post> postList = postMapper.listPost(map);
@@ -50,5 +49,11 @@ public class IndexController {
         mav.addObject("blogLeft", "blogList.jsp");
         mav.setViewName("index");
         return mav;
+    }
+
+    @RequestMapping("/image")
+    public String getImage(){
+        System.out.println("Image");
+        return "image";
     }
 }

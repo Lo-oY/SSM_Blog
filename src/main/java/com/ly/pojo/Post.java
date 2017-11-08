@@ -8,7 +8,7 @@ import java.beans.PropertyDescriptor;
 import java.util.Date;
 import java.util.List;
 
-public class Post implements InstantiationAwareBeanPostProcessor {
+public class Post{
     private Integer id;
 
     private User user;
@@ -102,23 +102,4 @@ public class Post implements InstantiationAwareBeanPostProcessor {
         this.comments = comments;
     }
 
-    public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
-        return null;
-    }
-
-    public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-        return false;
-    }
-
-    public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException {
-        return null;
-    }
-
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        return null;
-    }
-
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        return null;
-    }
 }
