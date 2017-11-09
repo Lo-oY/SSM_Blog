@@ -87,7 +87,7 @@ public class Post implements InstantiationAwareBeanPostProcessor {
                 ", title='" + title + '\'' +
                 ", keywords='" + keywords + '\'' +
                 ", postType=" + postType +
-                ", cotent='" + content + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 

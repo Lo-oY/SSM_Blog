@@ -22,7 +22,7 @@
     <title>播客主页</title>
 </head>
 <body>
-<div class="container" style="width:80%;margin-top:20px">
+<div class="container" style="width:70%;margin-top:20px">
     <div class="row">
         <jsp:include page="common/header.jsp"/>
     </div>

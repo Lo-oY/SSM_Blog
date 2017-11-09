@@ -101,7 +101,7 @@ ul, menu, dir {
     text-align: right;
     font-size: 18px;
     /*padding-top: 10px;*/
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #505050;
 
     /*padding: 2px;*/
@@ -109,7 +109,7 @@ ul, menu, dir {
 }
 .left{
     /*margin-right: 0px;*/
-    padding: 10px 20px 0 0;
+    padding: 5px 10px 0 0;
     
     text-align: right;
 }
@@ -117,7 +117,7 @@ ul, menu, dir {
 .list_left li{
     list-style: none;
     display: block;
-    padding-top: 8px;
+    padding-top: 5px;
 }
 ul[class=list_left] {
     margin: 5px;
@@ -130,7 +130,7 @@ ul[class=list_left] {
 }
 
 .left_container{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
 }
 
 .list_left li a{
