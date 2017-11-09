@@ -14,6 +14,8 @@
     <artifact:dependencies filesetid="fileset.lib.test" pathid="path.lib.test" id="path.lib.test" pomrefid="pom.this"
                            usescope="test"/>
 
+    <fileset id="resource" dir="src/main/resource"/>
+
     <path id="src-test">
         <fileset dir="src/main/java"/>
         <fileset dir="src/main/test"/>
@@ -44,6 +46,17 @@
                 <path refid="classpath.project"/>
             </classpath>
         </javac>
+
+        <copy todir="target/classes">
+            <fileset dir="${resource.dir}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <copy todir="target/classes/${mapping.classpath}">
+            <fileset dir="${mapping.dir}">
+                <include name="**"/>
+            </fileset>
+        </copy>
     </target>
     <target name="compile-test">
         <mkdir dir="target/classes"/>
@@ -82,6 +95,7 @@
         </artifact:install>
     </target>
 
+
     <target name="releases" depends="dist">
         <artifact:deploy file="target/${app.name}-${app.version}.jar">
             <remoterepository url="${release.repository.url}">
@@ -97,8 +111,6 @@
             </remoterepository>
         </artifact:deploy>
     </target>
-
-
 
 
 </project>

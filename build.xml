@@ -2,6 +2,9 @@
     <property name="app.name" value="SSM_Blog"/>
     <property name="app.version" value="1.0"/>
     <property name="app.short.name" value="SSM_Blog"/>
+    <property name="resource.dir" value="src/main/resource"/>
+    <property name="mapping.dir" value="src/main/java/com/ly/mapping"/>
+    <property name="mapping.classpath" value="com/ly/mapping"/>
 
     <import file="build-web-global.xml"/>
 
