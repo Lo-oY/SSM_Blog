@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.ly.util.ResponseDto;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -16,10 +17,28 @@ public class XMappingJackson2JsonView extends MappingJackson2JsonView {
         this.getObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
+//    @Override
+//    protected Object filterModel(Map<String, Object> model) {
+//        ResponseDto response = null;
+//        Map result = (Map) super.filterModel(model);
+//        if (result.size() == 1) {
+//            Object object = result.values().iterator().next();
+//            if (object instanceof ResponseDto)
+//                return object;
+//            response = new ResponseDto();
+//            response.setItem(object);
+//        } else {
+//            response = new ResponseDto();
+//            response.setItem(result);
+//        }
+//        return response;
+//    }
+
+
     @Override
-    protected Object filterModel(Map<String, Object> model) {
+    protected Object filterAndWrapModel(Map<String, Object> model, HttpServletRequest request) {
         ResponseDto response = null;
-        Map result = (Map) super.filterModel(model);
+        Map result = (Map) super.filterAndWrapModel(model,request);
         if (result.size() == 1) {
             Object object = result.values().iterator().next();
             if (object instanceof ResponseDto)

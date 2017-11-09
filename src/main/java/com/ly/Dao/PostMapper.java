@@ -22,6 +22,8 @@ public interface PostMapper {
 
     int updateByPrimaryKeyWithBLOBs(Post record);
 
-    int updateByPrimaryKey(Post record);
+    Post getPrevBlog(Integer id);
+
+    Post getNextBlog(Integer id);
 
 }

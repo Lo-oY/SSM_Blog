@@ -6,8 +6,9 @@ import org.springframework.beans.factory.config.InstantiationAwareBeanPostProces
 
 import java.beans.PropertyDescriptor;
 import java.util.Date;
+import java.util.List;
 
-public class Post implements InstantiationAwareBeanPostProcessor {
+public class Post{
     private Integer id;
 
     private User user;
@@ -21,6 +22,8 @@ public class Post implements InstantiationAwareBeanPostProcessor {
     private PostType postType;
 
     private String content;
+
+    private List<Comment> comments;
 
     public Integer getId() {
         return id;
@@ -91,23 +94,12 @@ public class Post implements InstantiationAwareBeanPostProcessor {
                 '}';
     }
 
-    public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
-        return null;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
-        return false;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
-    public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException {
-        return null;
-    }
-
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        return null;
-    }
-
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        return null;
-    }
 }

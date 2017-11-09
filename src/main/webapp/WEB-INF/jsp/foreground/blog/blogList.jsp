@@ -8,8 +8,8 @@
     <c:forEach items="${postList}" var="post">
         <div class="blogs">
             <ul>
-                <h3>${post.title}</h3>
-                <p>${fn:substring(post.content,0,100 )}...</p>
+                <h3><a href="/post/${post.id}">${post.title}</a></h3>
+                <div>${fn:substring(post.content,0,100 )}...</div>
                 <div class="author">
                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                     <span><fmt:formatDate value="${post.postTime }" type="date" pattern="yyyy-MM-dd HH:mm"/></span>

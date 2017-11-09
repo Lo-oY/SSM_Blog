@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript"
+	src="./static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCore.js"></script>
+	<link rel="stylesheet" href="./static/bootstrap3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/bootstrap3/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="./static/css/blog.css">
+	<script src="./static/bootstrap3/js/jquery-1.11.2.min.js"></script>
+	<script src="./static/bootstrap3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+	href="./static/ueditor1_4_3_3/third-party/SyntaxHighlighter/shCoreDefault.css">
+	<link rel="stylesheet" href="./css/blogDetail.css">
+	<script type="text/javascript">
+		SyntaxHighlighter.all();
+
+		function loadimage(){
+			document.getElementById("randImage").src="http://localhost:8080/image.jsp?"+Math.random();
+		}
+
+		function submitData(){
+			var imageCode = $("#imageCode").val();
+			var comment = $("#")
+		}
+	</script>
+	<title>Document</title>
+</head>
+<body style="width: 80%">
+	<div class="row">
+		<div class="col-xs-9">
+			<div class="data_list">
+				<div class="data_title">
+
+					博客信息
+
+				</div>
+				<div>
+					<div class="post_title">
+						<h3>
+							<strong>111</strong>
+
+						</h3>
+					</div>
+					<div class="post_info">
+						<div style="float: left">
+							<strong>标签</strong>：							&nbsp;&nbsp;<a href="/blog/search.html?q=11">11</a>&nbsp;
+
+						</div>
+						<div style="float: right">
+							发布于：『 2017-10-27 10:26 』   博客类别：Java   阅读(16)   评论(10)
+
+
+						</div>
+					</div>
+					<!-- <div style="clear: both"/> -->
+					<br/>
+					<div class="line"></div>
+					<div class="post_content">
+						111
+					</div>
+					<div class="line"></div>
+					<div><p>上一篇：<a href='/blog/articles/56.html'>Java</a></p>
+						<p>下一篇：无</P></div>
+						</div>
+					</div>
+
+					<div class="data_list">
+						<div class="data_title">
+							评论内容
+						</div>
+						<div>
+							<div class="comment_data">
+								<ul>
+									<div class="comment">
+										<span><font>
+											1楼&nbsp;&nbsp;&nbsp;&nbsp;127.0.0.1</font>
+											&nbsp;&nbsp;&nbsp;&nbsp;111&nbsp;&nbsp;&nbsp;&nbsp;
+											[2017-11-02 06:18] </span>
+										</div>
+
+										<div class="comment">
+											<span><font>
+												2楼&nbsp;&nbsp;&nbsp;&nbsp;127.0.0.1</font>
+												&nbsp;&nbsp;&nbsp;&nbsp;><script></script>&nbsp;&nbsp;&nbsp;&nbsp;
+												[2017-11-02 06:16] </span>
+											</div>
+
+
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="data_list">
+								<div class="data_title">
+									发表评论
+								</div>
+								<div class="publish_comment">								<div>
+									<textarea style="width: 100%" rows="3" id="content" name="content"
+									placeholder="来说两句吧..."></textarea>
+								</div>
+								<div class="verCode">
+									验证码:<input type="text" name="imageCode" id="imageCode"/>
+									<img onclick="javascript:loadimage();"  name="randImage" id="randImage" title="换一张试试"src="http://localhost:8080/image.jsp" on/>
+								</div>
+								<div class="publishButton">
+									<button class="btn btn-primary" type="button" onclick="submitData()">发表评论</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+					</div>
+				</div>
+			</body>
+			</html>

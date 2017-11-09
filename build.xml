@@ -1,0 +1,8 @@
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir=".">
+    <property name="app.name" value="SSM_Blog"/>
+    <property name="app.version" value="1.0"/>
+    <property name="app.short.name" value="SSM_Blog"/>
+
+    <import file="build-web-global.xml"/>
+
+</project>

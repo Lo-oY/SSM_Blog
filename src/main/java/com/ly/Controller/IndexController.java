@@ -33,6 +33,7 @@ public class IndexController {
         log.debug("route to index  debug");
         log.info("route to index  info");
 
+
         System.out.println("debug enable" + log.isDebugEnabled());
         System.out.println("info enable" + log.isInfoEnabled());
         System.out.println("error enable" + log.isErrorEnabled());
@@ -40,14 +41,20 @@ public class IndexController {
         System.out.println("warn enable" + log.isWarnEnabled());
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("typeId", 6);
         map.put("start", 0);
         map.put("end", 10);
         List<Post> postList = postMapper.listPost(map);
         System.out.println(postList);
         ModelAndView mav = new ModelAndView();
         mav.addObject("postList", postList);
+        mav.addObject("blogLeft", "blogList.jsp");
         mav.setViewName("index");
         return mav;
+    }
+
+    @RequestMapping("/image")
+    public String getImage(){
+        System.out.println("Image");
+        return "image";
     }
 }

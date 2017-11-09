@@ -31,7 +31,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <jsp:include page="foreground/blog/blogList.jsp"/>
+            <jsp:include page="foreground/blog/${blogLeft}"/>
         </div>
         <div class="col-md-4 left">
             <jsp:include page="foreground/blog/blogRigth.jsp"/>

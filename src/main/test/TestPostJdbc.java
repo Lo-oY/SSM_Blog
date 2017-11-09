@@ -57,7 +57,7 @@ public class TestPostJdbc {
     public void testUpdate(){
         Post post = postMapper.selectByPrimaryKey(1);
         post.setTitle("TestAutowire Update");
-        int i = postMapper.updateByPrimaryKey(post);
+        int i = postMapper.updateByPrimaryKeySelective(post);
         Assert.assertEquals(1,i);
     }
 

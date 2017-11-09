@@ -1,27 +1,34 @@
 
-*{
+* {
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
-body{
-    font-size: 14px;
+body {
     background-color: #fafafa;
-        /*background-image: url(../bg.jpg);*/
-/*    width: 80%;
+    /*background-image: url(../bg.jpg);*/
+    width: 80%;
     margin: 0 auto;
-*/}
-.blog_container{
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+.blogs {
+    margin-top: 2em;
+}
+
+.blog_container {
     margin: 0 auto;
     width: 80%;
 }
 
-.header{
+.header {
     padding-top: 5px;
     padding-bottom: 5px;
 
     background-size: contain;
 }
+
 .main-navigation {
     text-align: center;
     background: #fafafa;
@@ -38,7 +45,7 @@ body{
 }
 
 ul, menu, dir {
-    display: block;     
+    display: block;
     list-style-type: disc;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
@@ -60,7 +67,7 @@ ul, menu, dir {
     padding: 0 21px;
 }
 
-.blog_list{
+.blog_list {
 
 }
 
@@ -68,77 +75,86 @@ ul, menu, dir {
     background-color: #888;
 }
 
- .navbar-toggle {
+.navbar-toggle {
     border-color: #ddd;
 }
 
-.navbar-default{
+.navbar-default {
     border: none;
     background: none;
     box-shadow: none;
-    border-style:dashed;
+    border-style: dashed;
     border-width: 1px;
     background-color: #fafafa;
 }
 
-.header_eng1 ,.header_eng2{
+.header_eng1, .header_eng2 {
     color: #505050;
-    margin: 0 ;
+    margin: 0;
     line-height: 21px;
     padding-top: 5px;
-    font:italic 1.3em Georgia, serif;
+    font: italic 1.3em Georgia, serif;
 
 }
-.header_eng1{
+
+.header_eng1 {
 
 }
-.navbar{
+
+.navbar {
     background: transparent;
 }
 
-.header_left{
+.header_left {
 
-    text-align: right;
-    font-size: 18px;
+    text-align: left;
+    font-size: 110%;
+    font-weight: bold;
+    padding: 6px;
+    background: #f0f0f0;
+    margin-left: 42px;
+    margin-top: 20px;
     /*padding-top: 10px;*/
-    margin-bottom: 5px;
-    color: #505050;
+    /*color: #505050;*/
 
     /*padding: 2px;*/
 
 }
-.left{
+
+.left {
     /*margin-right: 0px;*/
-    padding: 5px 10px 0 0;
-    
+    padding: 10px 20px 0 0;
+
     text-align: right;
 }
 
-.list_left li{
+.list_left li {
     list-style: none;
     display: block;
-    padding-top: 5px;
+    padding-top: 8px;
 }
+
 ul[class=list_left] {
     margin: 5px;
     padding-top: 5px;
-     -webkit-margin-before: 0em;
+    -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 0px;
 }
 
-.left_container{
-        margin-bottom: 20px;
+.left_container {
+    margin-bottom: 30px;
 }
 
-.list_left li a{
+.list_left li a {
     color: #505050;
-        border-bottom: dashed;
-        border-width: 1px;
+    border-bottom: dashed;
+    border-width: 1px;
 
 }
+
 /*近期文章
 近期评论
 文章归档
@@ -151,29 +167,47 @@ ul[class=list_left] {
 日期 标签 分类 评论*/
 
 .blogs h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     transition: all .5s;
     margin-bottom: 10px;
+    padding: 0 0 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    border-left: 5px solid #1fa6e6;
 }
 
-.blogs p{
+.blogs a {
+    color: #1c7791;
+    text-decoration: none;
+}
+
+.blogs a:hover {
+    color: #f60;
+    text-decoration: none;
+}
+
+.blogs ul {
+    min-height: 100px;
+}
+
+.blogs p {
 
     display: block;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-    font:12px/1.5 'Microsoft Yahei', 'Simsun';
+    font: 12px/1.5 'Microsoft Yahei', 'Simsun';
 
 }
 
-.glyphicon{
-    margin-left:8px;
+.glyphicon {
+    margin-left: 8px;
     padding: 1px;
     text-align: right;
 }
 
-.author{
-    margin-top:15px;
+.author {
+    margin-top: 1em;
+    float: right;
 }
