@@ -33,6 +33,7 @@ public class IndexController {
         log.debug("route to index  debug");
         log.info("route to index  info");
 
+
         System.out.println("debug enable" + log.isDebugEnabled());
         System.out.println("info enable" + log.isInfoEnabled());
         System.out.println("error enable" + log.isErrorEnabled());

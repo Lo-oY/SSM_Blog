@@ -1,64 +1,8 @@
-
-<project xmlns:artifact="antlib:org.apache.maven.artifact.ant">
-
-    <property name="jdk.version" value="1.8"/>
-    <property name="source.encoding" value="UTF-8"/>
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir=".">
     <property name="app.name" value="SSM_Blog"/>
     <property name="app.version" value="1.0"/>
+    <property name="app.short.name" value="SSM_Blog"/>
 
-    <artifact:pom id="pom.this" file="pom.xml"/>
-
-    <artifact:dependencies filesetid="fileset.lib.runtime" pathid="path.lib.runtime" id="path.lib.runtime" pomrefid="pom.this" usescope="runtime"/>
-    <artifact:dependencies filesetid="fileset.lib.provided" pathid="path.lib.provided" id="path.lib.provided" pomrefid="pom.this" usescope="provided"/>
-    <artifact:dependencies filesetid="fileset.lib.test" pathid="path.lib.test" id="path.lib.test" pomrefid="pom.this" usescope="test"/>
-
-    <path id="src-test">
-       <fileset dir="src/main/java"/>
-        <fileset dir="src/main/test"/>
-    </path>
-    <path id="classpath.project">
-        <path refid="path.lib.runtime"/>
-        <path refid="path.lib.provided"/>
-        <pathelement location="target/classes"/>
-    </path>
-
-    <path id="classpath.project-test">
-        <path refid="classpath.project"/>
-        <path refid="path.lib.test"/>
-        <pathelement location="target/classes"/>
-    </path>
-
-    <target name="clean">
-        <delete dir="target" quiet="true"/>
-        <mkdir dir="target" />
-        <mkdir dir="target/classes"/>
-    </target>
-
-    <target name="compile">
-        <mkdir dir="target/classes"/>
-        <javac  fork="true" memorymaximumsize="512m" srcdir="src/main/java" destdir="target/classes" source="${jdk.version}" target="${jdk.version}"  encoding="${source.encoding}">
-            <classpath>
-                <path refid="classpath.project"/>
-            </classpath>
-        </javac>
-    </target>
-  <target name="compile-test">
-        <mkdir dir="target/classes"/>
-        <javac fork="true" memorymaximumsize="512m" srcdir="src/main/test"  destdir="target/classes" source="${jdk.version}" target="${jdk.version}" encoding="${source.encoding}">
-            <classpath>
-                <path refid="classpath.project-test"/>
-            </classpath>
-        </javac>
-    </target>
-<target name="dist" depends="compile">
-    <copy todir="target/classes">
-        <fileset dir="src/main/java" includes="com/**/*.vm"></fileset>
-    </copy>
-    <jar destfile="target/${app.name}-${app.version}.jar">
-        <fileset dir="target/classes">
-            <include name="com/**"/>
-        </fileset>
-    </jar>
-</target>
+    <import file="build-web-global.xml"/>
 
 </project>

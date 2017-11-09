@@ -1,0 +1,50 @@
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+    <import file="build-global.xml"/>
+    <target name="deploy-all">
+
+        <antcall target="deploy"/>
+        <antcall target="cpfile"/>
+    </target>
+
+
+    <target name="cpfile">
+        <delete dir="target/${app.short.name}"/>
+        <mkdir dir="target/${app.short.name}/webapps"/>
+        <antcall target="cpweb"/>
+        <antcall target="cplib"/>
+        <antcall target="cprun"/>
+        <delete dir="target/${app.short.name}/log"/>
+        <delete dir="target/${app.short.name}/logs"/>
+        <mkdir dir="target/${app.short.name}/log"/>
+        <mkdir dir="target/${app.short.name}/log"/>
+    </target>
+
+    <target name="cpweb">
+        <copy todir="target/${app.short.name}/webapps" flatten="false">
+            <fileset dir="src/main/webapp">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="cprun">
+        <copy todir="target/${app.short.name}/sql" flatten="false">
+            <fileset dir="src/main/sql">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="cplib">
+        <copy todir="target/${app.short.name}/webapps/WEB-INF/lib" flatten="true">
+            <fileset refid="fileset.lib.runtime"/>
+        </copy>
+        <copy todir="target/${app.short.name}/webapps/WEB-INF/lib" file="target/${app.name}-${app.version}.jar"/>
+        <copy overwrite="true" todir="target/${app.short.name}/webapps/WEB-INF/classes" flatten="false">
+            <fileset dir="target/classes">
+                <include name="**"/>
+                <exclude name="com/**"/>
+            </fileset>
+        </copy>
+    </target>
+</project>
