@@ -1,4 +1,4 @@
-<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir=".">
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir="." name="global">
 
     <property name="jdk.version" value="1.8"/>
     <property name="source.encoding" value="UTF-8"/>
@@ -112,5 +112,22 @@
         </artifact:deploy>
     </target>
 
+
+    <target name="test">
+        <mkdir dir="target"/>
+        <jar destfile="target/test-classes/ly/hotupdate/TestInstrument1.jar">
+            <fileset dir="target/test-classes/ly/hotupdate">
+                <!--<include name="com/**"/>-->
+                <include name="AgentMain.class"/>
+            </fileset>
+            <manifest>
+                <attribute name="Agent-Class" value="ly.hotupdate.AgentMain" />
+                <attribute name="Can-Redefine-Classes" value="true" />
+                <attribute name="Can-Retransform-Classes" value="true" />
+                <!--<attribute name="Premain-Class" value="ly.hotupdate.AgentMain"/>-->
+            </manifest>
+
+        </jar>
+    </target>
 
 </project>

@@ -1,4 +1,4 @@
-<project xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" name="web-global">
     <import file="build-global.xml"/>
     <target name="deploy-all">
 
@@ -51,7 +51,7 @@
     <target name ="war" depends ="deploy,cpfile">
         <war destfile ="target/${app.short.name}.war"  webxml ="src/main/webapp/WEB-INF/web.xml">
             <!--  拷贝WebRoot 下除了WEB-INF 和META-INF 的两个文件夹-->
-            <fileset dir ="src/main/webapp"  includes ="**/*.jsp"/>
+            <fileset dir ="src/main/webapp"/>
             <!--  拷贝lib 目录下的jar 包-->
             <!--<lib>-->
             <!--<fileset refid="fileset.lib.runtime"/>-->
