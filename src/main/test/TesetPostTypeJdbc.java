@@ -26,11 +26,18 @@ public class TesetPostTypeJdbc {
     public void testInsert(){
 
         PostType postType = new PostType();
-        postType.setId(11);
+//        postType.setId(11);
         postType.setName("java");
         postType.setOrder(1);
         postTypeMapper.insert(postType);
     }
+
+
+
+
+
+
+
 
     @Test
     public void testInsertSelective(){

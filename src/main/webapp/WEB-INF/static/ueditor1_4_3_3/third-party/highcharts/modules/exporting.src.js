@@ -428,7 +428,7 @@ extend(Chart.prototype, {
 			menuItemStyle = navOptions.menuItemStyle,
 			chartWidth = chart.chartWidth,
 			chartHeight = chart.chartHeight,
-			cacheName = 'cache-' + className,
+			cacheName = 'ehcache-' + className,
 			menu = chart[cacheName],
 			menuPadding = mathMax(width, height), // for mouse leave detection
 			boxShadow = '3px 3px 10px #888',

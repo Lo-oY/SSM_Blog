@@ -15,6 +15,9 @@
     <!-- log4j日志文件管理包版本 -->
     <slf4j.version>1.6.6</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
+
+    <java-version>1.8</java-version>
+
   </properties>
 
   <dependencies>
@@ -264,16 +267,6 @@
       <version>2.8.7</version>
     </dependency>
 
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.0.1</version>
-    </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
     <dependency>
@@ -296,6 +289,39 @@
       <version>2.1.3</version>
     </dependency>
 
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-core</artifactId>
+      <version>2.4.4</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>1.4.1.RELEASE</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/commons-pool/commons-pool -->
+    <!--<dependency>-->
+      <!--<groupId>commons-pool</groupId>-->
+      <!--<artifactId>commons-pool</artifactId>-->
+      <!--<version>1.6</version>-->
+    <!--</dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.6.1</version>
+    </dependency>
 
 
   </dependencies>
@@ -322,6 +348,17 @@
           <webAppConfig>
             <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
           </webAppConfig>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <source>${java-version}</source>
+          <target>${java-version}</target>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
 

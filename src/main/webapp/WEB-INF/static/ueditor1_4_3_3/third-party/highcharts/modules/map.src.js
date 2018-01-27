@@ -122,7 +122,7 @@
 			dataMax,
 			xData = [];
 
-		// Remove the xData array and cache it locally so that the proceed method doesn't use it
+		// Remove the xData array and ehcache it locally so that the proceed method doesn't use it
 		each(this.series, function (series, i) {
 			if (series.useMapGeometry) {
 				xData[i] = series.xData;

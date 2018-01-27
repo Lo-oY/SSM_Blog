@@ -1490,7 +1490,7 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 		points = series.points;
 
 		for (i = 0, len = points.length; i < len; i++) {
-			// cache current point object
+			// ehcache current point object
 			point = points[i];
 			shapeArgs = point.shapeArgs;
 
