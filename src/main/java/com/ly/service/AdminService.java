@@ -21,6 +21,10 @@ public class AdminService {
     @Autowired
     private UserMapper userMapper;
 
+    public AdminService() {
+        System.out.println("super service");
+    }
+
     public User login(User user) {
 
         User temp = userMapper.selectByName(user.getName());

@@ -6305,7 +6305,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
 
         /**
          * 缓存当前选区的range和选区的开始节点
-         * @method cache
+         * @method ehcache
          */
         cache:function () {
             this.clear();

@@ -29,8 +29,8 @@
 
 <%
     out.clear();
-    response.setHeader("Pragma", "No-cache");
-    response.setHeader("Cache-Control", "No-cache");
+    response.setHeader("Pragma", "No-ehcache");
+    response.setHeader("Cache-Control", "No-ehcache");
     response.setDateHeader("Expires", 0);
     int width = 60, height = 20;
     BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

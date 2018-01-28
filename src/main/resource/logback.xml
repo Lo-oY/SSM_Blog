@@ -29,6 +29,9 @@
     <logger name="com.ly" additivity="false" level="DEBUG">
         <appender-ref ref="std.apd"/>
     </logger>
+    <logger name="org.apache.jasper" additivity="false" level="DEBUG">
+        <appender-ref ref="std.apd"/>
+    </logger>
 
     <logger name="request-time.log" additivity="false" level="DEBUG">
         <appender-ref ref="request-time.apd"/>

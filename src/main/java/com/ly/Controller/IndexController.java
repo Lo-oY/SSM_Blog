@@ -4,8 +4,6 @@ import com.ly.dao.PostMapper;
 import com.ly.pojo.Post;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +21,11 @@ public class IndexController {
 
 //    private Log log = LogFactory.getLog(getClass());
 //private Logger log = LoggerFactory.getLogger(getClass());
+
+
+    public IndexController() {
+        System.out.println("super index controller");
+    }
 
     private Log log = LogFactory.getLog(getClass());
     @Autowired

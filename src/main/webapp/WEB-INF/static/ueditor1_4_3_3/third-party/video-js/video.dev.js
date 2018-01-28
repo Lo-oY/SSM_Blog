@@ -254,7 +254,7 @@ vjs.CoreObject.create = function(){
 
 /**
  * Add an event listener to element
- * It stores the handler function in a separate cache object
+ * It stores the handler function in a separate ehcache object
  * and adds a generic handler to the element's event,
  * along with a unique id (guid) to the element.
  * @param  {Element|Object}   elem Element or object to bind listeners to
@@ -316,7 +316,7 @@ vjs.on = function(elem, type, fn){
  * @private
  */
 vjs.off = function(elem, type, fn) {
-  // Don't want to add a cache object through getData if not needed
+  // Don't want to add a ehcache object through getData if not needed
   if (!vjs.hasData(elem)) return;
 
   var data = vjs.getData(elem);
@@ -360,7 +360,7 @@ vjs.off = function(elem, type, fn) {
 };
 
 /**
- * Clean up the listener cache and dispatchers
+ * Clean up the listener ehcache and dispatchers
  * @param  {Element|Object} elem Element to clean up
  * @param  {String} type Type of event to clean up
  * @private
@@ -510,7 +510,7 @@ vjs.fixEvent = function(event) {
  */
 vjs.trigger = function(elem, event) {
   // Fetches element data and a reference to the parent (for bubbling).
-  // Don't want to add a data object to cache for every parent,
+  // Don't want to add a data object to ehcache for every parent,
   // so checking hasData first.
   var elemData = (vjs.hasData(elem)) ? vjs.getData(elem) : {};
   var parent = elem.parentNode || elem.ownerDocument;
@@ -805,7 +805,7 @@ vjs.guid = 1;
 vjs.expando = 'vdata' + (new Date()).getTime();
 
 /**
- * Returns the cache object where data for an element is stored
+ * Returns the ehcache object where data for an element is stored
  * @param  {Element} el Element to store data for.
  * @return {Object}
  * @private
@@ -820,7 +820,7 @@ vjs.getData = function(el){
 };
 
 /**
- * Returns the cache object where data for an element is stored
+ * Returns the ehcache object where data for an element is stored
  * @param  {Element} el Element to store data for.
  * @return {Object}
  * @private
@@ -831,7 +831,7 @@ vjs.hasData = function(el){
 };
 
 /**
- * Delete data for the element from the cache and the guid attr from getElementById
+ * Delete data for the element from the ehcache and the guid attr from getElementById
  * @param  {Element} el Remove data for an element
  * @private
  */
@@ -841,7 +841,7 @@ vjs.removeData = function(el){
   // Remove all stored data
   // Changed to = null
   // http://coding.smashingmagazine.com/2012/11/05/writing-fast-memory-efficient-javascript/
-  // vjs.cache[id] = null;
+  // vjs.ehcache[id] = null;
   delete vjs.cache[id];
 
   // Remove the expando property from the DOM node
@@ -3317,7 +3317,7 @@ vjs.Player.prototype.paused = function(){
 vjs.Player.prototype.currentTime = function(seconds){
   if (seconds !== undefined) {
 
-    // cache the last set value for smoother scrubbing
+    // ehcache the last set value for smoother scrubbing
     this.cache_.lastSetCurrentTime = seconds;
 
     this.techCall('setCurrentTime', seconds);
@@ -3328,7 +3328,7 @@ vjs.Player.prototype.currentTime = function(seconds){
     return this;
   }
 
-  // cache last currentTime and return
+  // ehcache last currentTime and return
   // default to 0 seconds
   return this.cache_.currentTime = (this.techGet('currentTime') || 0);
 };
@@ -3347,7 +3347,7 @@ vjs.Player.prototype.currentTime = function(seconds){
 vjs.Player.prototype.duration = function(seconds){
   if (seconds !== undefined) {
 
-    // cache the last set value for optimiized scrubbing (esp. Flash)
+    // ehcache the last set value for optimiized scrubbing (esp. Flash)
     this.cache_.duration = parseFloat(seconds);
 
     return this;

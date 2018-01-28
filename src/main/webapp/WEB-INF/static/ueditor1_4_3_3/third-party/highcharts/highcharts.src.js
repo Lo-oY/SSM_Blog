@@ -3347,7 +3347,7 @@ SVGRenderer.prototype = {
 								bBox;
 
 							while (words.length || rest.length) {
-								delete wrapper.bBox; // delete cache
+								delete wrapper.bBox; // delete ehcache
 								bBox = wrapper.getBBox();
 								actualWidth = bBox.width;
 								tooLong = actualWidth > width;
@@ -10184,7 +10184,7 @@ Legend.prototype = {
 		legend.lastItemY = itemMarginTop + legend.itemY + itemMarginBottom;
 		legend.lastLineHeight = mathMax(itemHeight, legend.lastLineHeight); // #915
 
-		// cache the position of the newly generated or reordered items
+		// ehcache the position of the newly generated or reordered items
 		item._legendItemPos = [legend.itemX, legend.itemY];
 
 		// advance
@@ -11231,7 +11231,7 @@ Chart.prototype = {
 	},
 
 	/**
-	 * Lay out the chart titles and cache the full offset height for use in getMargins
+	 * Lay out the chart titles and ehcache the full offset height for use in getMargins
 	 */
 	layOutTitles: function () {
 		var titleOffset = 0,
@@ -11392,7 +11392,7 @@ Chart.prototype = {
 			chart.renderToClone || renderTo
 		);
 
-		// cache the cursor (#1650)
+		// ehcache the cursor (#1650)
 		chart._cursor = container.style.cursor;
 
 		chart.renderer =
@@ -14913,7 +14913,7 @@ Series.prototype = {
 			series.animate(true);
 		}
 
-		// cache attributes for shapes
+		// ehcache attributes for shapes
 		series.getAttribs();
 
 		// SVGRenderer needs to know this before drawing elements (#1089, #1795)
@@ -14965,7 +14965,7 @@ Series.prototype = {
 	redraw: function () {
 		var series = this,
 			chart = series.chart,
-			wasDirtyData = series.isDirtyData, // cache it here as it is set to false in render, but used after
+			wasDirtyData = series.isDirtyData, // ehcache it here as it is set to false in render, but used after
 			group = series.group,
 			xAxis = series.xAxis,
 			yAxis = series.yAxis;

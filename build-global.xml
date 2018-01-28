@@ -1,4 +1,4 @@
-<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir=".">
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" basedir="." name="global">
 
     <property name="jdk.version" value="1.8"/>
     <property name="source.encoding" value="UTF-8"/>
@@ -13,6 +13,8 @@
                            pomrefid="pom.this" usescope="provided"/>
     <artifact:dependencies filesetid="fileset.lib.test" pathid="path.lib.test" id="path.lib.test" pomrefid="pom.this"
                            usescope="test"/>
+
+    <fileset id="resource" dir="src/main/resource"/>
 
     <path id="src-test">
         <fileset dir="src/main/java"/>
@@ -44,6 +46,17 @@
                 <path refid="classpath.project"/>
             </classpath>
         </javac>
+
+        <copy todir="target/classes">
+            <fileset dir="${resource.dir}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <copy todir="target/classes/${mapping.classpath}">
+            <fileset dir="${mapping.dir}">
+                <include name="**"/>
+            </fileset>
+        </copy>
     </target>
     <target name="compile-test">
         <mkdir dir="target/classes"/>
@@ -82,6 +95,7 @@
         </artifact:install>
     </target>
 
+
     <target name="releases" depends="dist">
         <artifact:deploy file="target/${app.name}-${app.version}.jar">
             <remoterepository url="${release.repository.url}">
@@ -99,6 +113,21 @@
     </target>
 
 
+    <target name="test">
+        <mkdir dir="target"/>
+        <jar destfile="target/test-classes/ly/hotupdate/TestInstrument1.jar">
+            <fileset dir="target/test-classes/ly/hotupdate">
+                <!--<include name="com/**"/>-->
+                <include name="AgentMain.class"/>
+            </fileset>
+            <manifest>
+                <attribute name="Agent-Class" value="ly.hotupdate.AgentMain" />
+                <attribute name="Can-Redefine-Classes" value="true" />
+                <attribute name="Can-Retransform-Classes" value="true" />
+                <!--<attribute name="Premain-Class" value="ly.hotupdate.AgentMain"/>-->
+            </manifest>
 
+        </jar>
+    </target>
 
 </project>
