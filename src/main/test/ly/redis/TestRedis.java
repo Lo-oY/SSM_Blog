@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -52,6 +53,48 @@ public class TestRedis {
         post_article(redisTemplate,"liangyong","hello world","www.baidu.com");
         Article o = (Article) redisTemplate.opsForHash().get("article:", "12345");
         System.out.println(o);
+//        redisTemplate.opsForHash().increment("article:","12345",1);
+//        Article o2 = (Article) redisTemplate.opsForHash().get("article:", "12345");
+//        System.out.println(o2);
+
+    }
+
+    @Test
+    public void insertZSet(){
+        String articleId_1 = "article:12345";
+        String articleId_2 = "article:12347";
+        stringRedisTemplate.opsForZSet().add("score:",articleId_1,1);
+        stringRedisTemplate.opsForZSet().incrementScore("score:",articleId_1,1);
+        double score = stringRedisTemplate.opsForZSet().score("score:", articleId_1);
+        Assert.assertEquals(score,2.0,0);
+
+        stringRedisTemplate.opsForZSet().add("score:",articleId_2,9);
+    }
+
+    @Test
+    public void insertSet(){
+        String articleId_1 = "article:12345";
+        String articleId_2 = "article:12346";
+        String articleId_3 = "article:12347";
+        String articleId_4 = "article:12348";
+        String articleId_5 = "article:12349";
+        String groupId  = "groups:programming";
+        stringRedisTemplate.opsForSet().add(groupId,articleId_1,articleId_2,articleId_3,articleId_4,articleId_5);
+    }
+
+    /**
+     * ZSet交集，score取和，set score默认为1
+     * 60s失效
+     */
+    @Test
+    public void testIntersectStore(){
+//        List<String> stringList = new ArrayList<>();
+//        stringList.add("groups:programming");
+//        stringList.add("score:");
+        if(!stringRedisTemplate.hasKey("score:programming")){
+            stringRedisTemplate.opsForZSet().intersectAndStore("groups:programming", "score:", "score:programming");
+            stringRedisTemplate.expire("score:programming",60,TimeUnit.SECONDS);
+        }
     }
 
     private static void post_article(RedisTemplate<String,Article> redisTemplate,String user,String title,String link){
@@ -64,8 +107,18 @@ public class TestRedis {
         String article_id = "12345";
         String voted = "voted:" + article_id;
         redisTemplate.expire(voted,7 , TimeUnit.DAYS);
+        RedisSerializer<String> stringSerializer = redisTemplate.getStringSerializer();
         redisTemplate.opsForHash().put("article:",article_id, article);
+//        redisTemplate.execute(new RedisCallback<Object>() {
+//
+//            @Override
+//            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+//                stringSerializer.serialize()
+//                return null;
+//            }
+//        });
     }
+
 
     static class Article implements Serializable{
         private String user;

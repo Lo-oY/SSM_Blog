@@ -5,7 +5,9 @@
 
 
 <div class='blog_list'>
-    <c:forEach items="${postList}" var="post">
+    <c:forEach items="${postList}
+
+" var="post">
         <div class="blogs">
             <ul>
                 <h3><a href="/post/${post.id}">${post.title}</a></h3>
