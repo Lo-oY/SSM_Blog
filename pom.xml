@@ -382,6 +382,42 @@
         <!--</configuration>-->
       <!--</plugin>-->
 
+      <!-- resource插件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+      </plugin>
+
+      <!-- war打包插件, 设定war包名称不带版本号 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <warName>${project.artifactId}</warName>
+          <!--将类文件打成jar包-->
+
+          <archiveClasses>true</archiveClasses>
+
+          <!--将资源文件打到classes目录下-->
+
+          <webResources>
+
+            <resource>
+
+              <directory>src/main/resource</directory>
+
+              <targetPath>WEB-INF/classes</targetPath>
+
+              <filtering>true</filtering>
+
+            </resource>
+
+          </webResources>
+
+        </configuration>
+      </plugin>
     </plugins>
 
   </build>
